@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<div id="highlightDiv">
+  <p>This is a Sample Paragraph with Some Capital Words like JavaScript, HTML, and CSS.</p>
+</div>
+<script>
+  
+var divElement = document.getElementById("highlightDiv");
+var paragraph = divElement.querySelector("p");
+divElement.addEventListener("mouseover", function() {
+var words = paragraph.innerText.split(" ");
+for (var i = 0; i < words.length; i++) {
+    if (/^[A-Z]/.test(words[i])) {
+     words[i] = '<span class="highlight">' + words[i] + '</span>';
+}
+}
+    
+paragraph.innerHTML = words.join(" ");
+  });
+
+divElement.addEventListener("mouseout", function() {
+paragraph.innerHTML = "This is a Sample Paragraph with Some Capital Words like JavaScript, HTML, and CSS.";
+  });
+</script>
+
+</body>
+</html>
