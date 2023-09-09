@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Cart</title>
+    <style>
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+        }
+        img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Cart</h1>
+    <div id="cart"></div>
+
+    <script>
+        const cart = [];
+
+        function addToCart(imageSrc, name, description, price, quantity) {
+            cart.push({
+                imageSrc,
+                name,
+                description,
+                price,
+                quantity,
+            });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartDiv = document.getElementById("cart");
+            cartDiv.innerHTML = "";
+
+            cart.forEach((product, index) => {
+                const productDiv = document.createElement("div");
+                productDiv.className = "product";
+                productDiv.innerHTML = `
+                    <img src="${product.imageSrc}" alt="${product.name}">
+                    <div>
+                        <h2>${product.name}</h2>
+                        <p>${product.description}</p>
+                        <p>Price: $${product.price}</p>
+                        <p>Quantity: ${product.quantity}</p>
+                    </div>
+                `;
+
+                cartDiv.appendChild(productDiv);
+            });
+        }
+
+        // Example: Add a product to the cart
+        addToCart(
+            "image.jpg",
+            "Product Name",
+            "hahahahahah",
+            19.99,
+            2
+        );
+    </script>
+</body>
+</html>
